@@ -1,0 +1,107 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Filename: proposal.tex
+% Author:   David Oniani
+% Modified: April 01, 2020
+%  _         _____   __  __
+% | |    __ |_   _|__\ \/ /
+% | |   / _` || |/ _ \\  /
+% | |__| (_| || |  __//  \
+% |_____\__,_||_|\___/_/\_\
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document Definition
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt]{article}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages and Related Settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Global, document-wide settings
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+% Bibliography and references
+\usepackage[backend=biber]{biblatex}
+\addbibresource{references.bib}
+
+% Other packages
+\usepackage{hyperref}
+\usepackage[cache=false]{minted}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Line spacing is 1.5
+\renewcommand{\baselinestretch}{1.5}
+
+% Setting stuff
+\setlength{\parindent}{0pt}  % Remove indentations from paragraphs
+
+% PDF information and nice-looking urls
+\hypersetup{%
+  pdfauthor={David Oniani},
+  pdftitle={CS 296 Proposal},
+  pdfsubject={Paper, Writing, Computer Science},
+  pdfkeywords={Paper, Writing, Computer Science},
+  pdflang={English},
+  colorlinks=true,
+  linkcolor={black!50!blue},
+  citecolor={black!50!blue},
+  urlcolor={black!50!blue}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Author(s), Title, and Date
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Author(s)
+\author{David Oniani\\
+        Luther College\\
+        \href{mailto:oniada01@luther.edu}{oniada01@luther.edu}}
+
+% Title
+\title{\textbf{}}
+\title{\textbf{Cosine Similarity and Its Applications in AI\\(Proposal)}}
+
+% Date
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beginning of the Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Example Section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Choosing the right metric~\cite{thomas_uminsky} can be crucial to designing
+performant artificial intelligence models. Thousands of packages and libraries
+have been built and written just for providing these metrics. Cosine similarity
+is one of many metrics used extensively in natural language processing and
+artificial intelligence tasks.  The paper will introduce the technique and
+discuss its advantages and disadvantages as well as compare it to other
+approaches. Additionally, sample implementations of the above-mentioned
+approaches might also be provided.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% bibliography and references
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\printbibliography[heading=bibintoc]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The End of the Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
