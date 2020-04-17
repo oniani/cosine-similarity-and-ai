@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Filename: paper.tex
+% Filename: template.tex
 % Author:   David Oniani
-% Modified: February 14, 2020
+% Modified: April 17, 2020
 %  _         _____   __  __
 % | |    __ |_   _|__\ \/ /
 % | |   / _` || |/ _ \\  /
@@ -26,7 +26,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 
-% bibliography and references
+% Bibliography and references
 \usepackage[backend=biber]{biblatex}
 \addbibresource{references.bib}
 
@@ -43,6 +43,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % New commands
+\newcommand\und[1]{\underline{\smash{#1}}}  % Nice-looking underline
 \renewcommand{\baselinestretch}{1.5}        % Line spacing is 1.5
 
 % Rename "Contents" to "Table of Contents"
@@ -69,15 +70,18 @@
 % PDF information and nice-looking urls
 \hypersetup{%
   pdfauthor={David Oniani},
-  pdftitle={Outline},
-  pdfsubject={CS 296},
-  pdfkeywords={CS 296},
+  pdftitle={Your Title Goes Here},
+  pdfsubject={Subject 1, Subject 2, and Subject 3},
+  pdfkeywords={Keyword 1, Keyword 2, Keyword 3},
   pdflang={English},
   colorlinks=true,
   linkcolor={black!50!blue},
   citecolor={black!50!blue},
   urlcolor={black!50!blue}
 }
+
+% Put a centered header of a footnote size on the top of each page
+\chead{\footnotesize{Your Title Goes Here}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Author(s), Title, and Date
@@ -86,11 +90,14 @@
 % Author(s)
 \author{David Oniani\\
         Luther College\\
+        \href{mailto:oniada01@luther.edu}{oniada01@luther.edu}
+        \and
+        David Oniani\\
+        Luther College\\
         \href{mailto:oniada01@luther.edu}{oniada01@luther.edu}}
 
 % Title
-\title{Paper Outline}
-
+\title{\textbf{Cosine Similarity and Its Applications in AI}}
 
 % Date
 \date{\today}
@@ -102,32 +109,47 @@
 \begin{document}
 \maketitle
 
-There will be 5 sections.
-
-\begin{itemize}
-
-  \item Introduction --- will introduce the topic and discuss its history.
-
-  \item Applications --- will discuss the applications of cosine similarity in
-        AI/NLP.
-
-  \item Comparison to Other Approaches --- will compare cosine similarity to
-        other text semantic similarity approaches.
-
-  \item Current work --- will briefly discuss the current, state-of-the art
-        work.
-
-  \item Summary --- will recap the paper.
-\end{itemize}
-
-
-% \nocite{*}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% References
+% Abstract
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\printbibliography%
+\begin{abstract}
+  \noindent Choosing the right metric~\cite{thomas} can be crucial to designing
+  performant artificial intelligence models. Thousands of packages and
+  libraries have been built and written just for providing these metrics.
+  Cosine similarity is one of many metrics used extensively in natural language
+  processing and artificial intelligence tasks. The paper will introduce the
+  technique and discuss its advantages and disadvantages as well as compare it
+  to other approaches.  Additionally, sample implementations of the
+  above-mentioned approaches might also be provided.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table of Contents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\tableofcontents
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Example Section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Example Section}
+
+Proin posuere suscipit ante, vitae eleifend nulla rhoncus in. Etiam vitae
+tellus vel augue porta consectetur in et risus. Nunc placerat in massa vel
+ultricies. In pharetra id odio vitae porttitor. Donec blandit tincidunt nunc,
+vitae dignissim massa semper in. Nulla facilisis imperdiet nisi dignissim
+suscipit. Proin auctor turpis vitae magna elementum, vitae imperdiet nunc
+blandit.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography and References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\printbibliography[heading=bibintoc]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The End of the Document
