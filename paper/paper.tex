@@ -145,7 +145,7 @@ In order to understand how cosine similarity works, let us first discuss the
 modeling of a text document and cosine similarity in general and then proceed
 by its applications in text document similarity tasks.
 
-\bigskip
+\subsection{Document Modeling}
 
 There are several ways in which a text document can be modeled. This includes a
 bag of words modeling, where the frequency of a term in a text document
@@ -155,7 +155,7 @@ quantify the textual data into the numeric data (usually, vectors). Once the
 numeric data is obtained, we can then apply various text semantic similarity
 techniques in order to compare whether two documents are similar to each other.
 
-\bigskip
+\subsection{Cosine Similarity}
 
 Cosine similarity is a measure of similarity between two non-zero vectors of an
 inner product space that measures the cosine of the angle between
@@ -168,7 +168,7 @@ represented as the product of two vectors. Therefore if
 \(\vec{b} = \begin{bmatrix}b_1 \\ b_2 \\ b_3\end{bmatrix}\), then
 \(\vec{a} \cdot \vec{b}\) is also equal to \(a_1b_1 + a_2b_2 + a_3b_3\).
 
-\bigskip
+\subsection{Cosine similarity in Documents}
 
 Suppose that we have two documents \(D_1\) and \(D_2\) modeled as term vectors
 \(\vec{t_1}\) and \(\vec{t_2}\) respectively.  Then the similarity of two documents
@@ -181,12 +181,12 @@ cosine of the angle between the vectors.  The formula would be
 As a result, the cosine similarity is non-negative, bounded by the closed
 interval \([0,1]\).
 
-\bigskip
+\subsection{Example}
 
 As an example, consider two vectors \(\vec{a} = \begin{bmatrix}3 \\ 4\end{bmatrix}\)
 and \(\vec{b} = \begin{bmatrix}5 \\ 12\end{bmatrix}\). Then the size of \(a\) is
 \(\sqrt{1^2 + 2^4} = 5\) and the size of \(b\) is \(\sqrt{3^2 + 4^2} = 13\).
-Then \(A \dot B = 15 + 48 = 63\) and
+Then \(\vec{a} \cdot \vec{b} = 15 + 48 = 63\) and
 \(\abs{\vec{a}} \times \abs{\vec{b}} = 5 * 13 = 65\). Therefore
 the cosine of an angle between these vectors is \(\dfrac{63}{65}\) which is the
 similarity measure between these two vectors.
