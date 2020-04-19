@@ -27,7 +27,7 @@
 \usepackage[english]{babel}
 
 % Bibliography and references
-\usepackage[backend=biber]{biblatex}
+\usepackage[backend=biber,sorting=none]{biblatex}
 \addbibresource{references.bib}
 
 % Other packages
@@ -41,6 +41,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Command Definitions and Redefinitions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Operators
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}               % Absolute value
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}              % Ceiling
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}           % Floor
 
 % New commands
 \newcommand\und[1]{\underline{\smash{#1}}}  % Nice-looking underline
@@ -110,14 +115,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{abstract}
-  \noindent Choosing the right metric~\cite{thomas} can be crucial to designing
-  performant artificial intelligence models. Thousands of packages and
-  libraries have been built and written just for providing these metrics.
+  \noindent Choosing the right metric~\cite{thomas2020} can be crucial to
+  designing performant artificial intelligence models. Thousands of packages
+  and libraries have been built and written just for providing these metrics.
   Cosine similarity is one of many metrics used extensively in natural language
   processing and artificial intelligence tasks. The paper will introduce the
   technique and discuss its advantages and disadvantages as well as compare it
   to other approaches. Additionally, sample implementations of the
-  above-mentioned approaches might also be provided.
+  above-mentioned approaches will also be provided.
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -134,12 +139,57 @@
 
 \section{Introduction}
 
-Proin posuere suscipit ante, vitae eleifend nulla rhoncus in. Etiam vitae
-tellus vel augue porta consectetur in et risus. Nunc placerat in massa vel
-ultricies. In pharetra id odio vitae porttitor. Donec blandit tincidunt nunc,
-vitae dignissim massa semper in. Nulla facilisis imperdiet nisi dignissim
-suscipit. Proin auctor turpis vitae magna elementum, vitae imperdiet nunc
-blandit.
+There are a number of approaches for comparing whether two texts are
+semantically similar to each other. Cosine similarity is one of those methods.
+In order to understand how cosine similarity works, let us first discuss the
+modeling of a text document and cosine similarity in general and then proceed
+by its applications in text document similarity tasks.
+
+\bigskip
+
+There are several ways in which a text document can be modeled. This includes a
+bag of words modeling, where the frequency of a term in a text document
+represents its weight and therefore, more frequent words are going to be deemed
+more ``important.'' The whole idea behind a text document modeling is to
+quantify the textual data into the numeric data (usually, vectors). Once the
+numeric data is obtained, we can then apply various text semantic similarity
+techniques in order to compare whether two documents are similar to each other.
+
+\bigskip
+
+Cosine similarity is a measure of similarity between two non-zero vectors of an
+inner product space that measures the cosine of the angle between
+them~\cite{wikicosine}. If we have two vectors \(\vec{a}\) and \(\vec{b}\), then the cosine of
+these two vectors is \(\vec{a} \cdot \vec{b}\) which is equal to
+\(\left\|\vec{a}\right\|\left\|\vec{b}\right\|\cos\theta\) where \(\theta\) is the angle
+between these vectors (Euclidean dot product formula). It also can be
+represented as the product of two vectors. Therefore if
+\(\vec{a} = \begin{bmatrix}a_1 \\ a_2 \\ a_3\end{bmatrix}\) and
+\(\vec{b} = \begin{bmatrix}b_1 \\ b_2 \\ b_3\end{bmatrix}\), then
+\(\vec{a} \cdot \vec{b}\) is also equal to \(a_1b_1 + a_2b_2 + a_3b_3\).
+
+\bigskip
+
+Suppose that we have two documents \(D_1\) and \(D_2\) modeled as term vectors
+\(\vec{t_1}\) and \(\vec{t_2}\) respectively.  Then the similarity of two documents
+corresponds to the correlation between the vectors and can be quantified as a
+cosine of the angle between the vectors.  The formula would be
+
+\[SIM(D_1, D_2) = \dfrac{\vec{t_1} \cdot \vec{t_2}}{\abs{\vec{t_a}} \times
+    \abs{\vec{t_b}}}\]
+
+As a result, the cosine similarity is non-negative, bounded by the closed
+interval \([0,1]\).
+
+\bigskip
+
+As an example, consider two vectors \(\vec{a} = \begin{bmatrix}3 \\ 4\end{bmatrix}\)
+and \(\vec{b} = \begin{bmatrix}5 \\ 12\end{bmatrix}\). Then the size of \(a\) is
+\(\sqrt{1^2 + 2^4} = 5\) and the size of \(b\) is \(\sqrt{3^2 + 4^2} = 13\).
+Then \(A \dot B = 15 + 48 = 63\) and
+\(\abs{\vec{a}} \times \abs{\vec{b}} = 5 * 13 = 65\). Therefore
+the cosine of an angle between these vectors is \(\dfrac{63}{65}\) which is the
+similarity measure between these two vectors.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliography and References
