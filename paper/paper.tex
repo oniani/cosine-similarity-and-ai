@@ -71,6 +71,7 @@
 \pagestyle{fancy}            % This allows to do fancy headers and footers
 \fancyhf{}                   % No additional page numbering (or other stuff)
 \cfoot{\thepage}             % Display page number at the bottom, in the center
+\usemintedstyle{tango}       % Colorscheme for minted
 
 % PDF information and nice-looking urls
 \hypersetup{%
@@ -160,20 +161,20 @@ in order to compare whether two documents are similar to each other.
 
 Cosine similarity is a measure of similarity between two non-zero vectors of an
 inner product space that measures the cosine of the angle between
-them~\cite{wikicosine}. If we have two vectors \(\vec{a}\) and \(\vec{b}\), then the cosine of
-these two vectors is \(\vec{a} \cdot \vec{b}\) which is equal to
-\(\left\|\vec{a}\right\|\left\|\vec{b}\right\|\cos\theta\) where \(\theta\) is the angle
-between these vectors (Euclidean dot product formula). It can also be
-represented as the product of two vectors. Therefore if
+them~\cite{wikicosine}. If we have two vectors \(\vec{a}\) and \(\vec{b}\),
+then the cosine of these two vectors is \(\vec{a} \cdot \vec{b}\) which is
+equal to \(\left\|\vec{a}\right\|\left\|\vec{b}\right\|\cos\theta\) where
+\(\theta\) is the angle between these vectors (Euclidean dot product formula).
+It can also be represented as the product of two vectors. Therefore if
 \(\vec{a} = \begin{bmatrix}a_1 \\ a_2 \\ a_3\end{bmatrix}\) and
 \(\vec{b} = \begin{bmatrix}b_1 \\ b_2 \\ b_3\end{bmatrix}\), then
 \(\vec{a} \cdot \vec{b}\) is also equal to \(a_1b_1 + a_2b_2 + a_3b_3\).
 
 \bigskip
 
-But why do we care about cosine of theta? Where does trig fit in with the dot
-product? Who thought of that? The answer comes from the law of cosines. A great
-walkthrough is available on the proof wiki~\cite{wikicosineproof}.
+Some of you might be wondering where the cosine comes from. The answer lies in
+the law of cosines. A great walkthrough is available on the proof Wikipedia
+page~\cite{wikicosineproof}.
 
 \subsection{Example}
 
@@ -193,9 +194,7 @@ measure between these two vectors.
 \section{Applications}
 
 Cosine similarity is one of the most commonly used approaches in text document
-similarity. Its flexibility allows one to apply it in virtually any setting, as
-long as the documents can be represented as vectors (also known as term
-vectors).
+similarity.
 
 \bigskip
 
@@ -210,8 +209,12 @@ quantified as a cosine of the angle between the vectors. The formula would be
 As a result, the similarity value is non-negative, bounded by the closed
 interval \([0,1]\).
 
-\begin{figure}[H]
-  \begin{minted}[fontsize=\small]{python}
+\bigskip
+
+Below find a Python implementation of cosine similarity.
+
+\begin{figure}[h]
+  \begin{minted}[fontsize=\small,frame=single]{python}
   import numpy as np
 
   def cosine_similarity(a: np.array, b: np.array) -> float:
@@ -233,11 +236,22 @@ interval \([0,1]\).
   \caption{Sample Python Implementation of Cosine Similarity.}
 \end{figure}
 
+The program above is fairly simplistic (yet performant) and as shown, it takes
+two vectors and prints out the cosine similarity.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Comparison to Other Approaches
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Comparison to Other Approaches}
+\section{Performance and Comparison to Other Approaches}
+
+Performance of cosine similarity can be altered by how the text document is
+vectorized~\cite{sitikhu2019} (e.g., tf-idf vectorization might yield better
+results than Word2Vec vectorization). This means that the right vectorization
+strategy could drastically increase the performance, while the poor
+vectorization will, unsurprisingly, result in a poor performance.
+
+\medskip
 
 There are many other approaches for finding semantic similarity between the
 texts. The recent advancements in the domains of artificial intelligence and
@@ -245,7 +259,7 @@ natural language processing allowed for development of models such as
 BERT~\cite{turc2019}, BioBERT~\cite{btz682}, and Universal Sentence Encoder
 (USE)~\cite{use} can be used for high-accuracy text semantic similarity score
 computations. These approaches are thought to, on average, outperform the
-cosine similarity, yet there are a number of efforts in determining this.
+cosine similarity. That said, there are
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Current Work
@@ -253,11 +267,24 @@ cosine similarity, yet there are a number of efforts in determining this.
 
 \section{Current Work}
 
+Cosine similarity is very much used in the modern, state-of-the-art papers,
+such as ones cited in the paper. Its flexibility allows one to apply it in
+virtually any setting, as long as the documents can be represented as vectors
+(also known as term vectors). Therefore, cosine similarity is still a trendy
+tool.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Summary
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Summary}
+
+We have introduced cosine similarity and briefly covered its history. We have
+discussed the importance of cosine similarity in the domains of artificial
+intelligence and natural language processing and its prevalence in the
+state-of-the-art work. Sample Python implementation of the algorithm was also
+provided alongside with small illustrious examples depicting the cosine
+similarity procedure.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliography and References
