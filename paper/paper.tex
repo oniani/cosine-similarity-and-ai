@@ -141,34 +141,54 @@
 
 \section{Introduction}
 
-There are a number of approaches for comparing whether two texts are
-semantically similar to each other. Cosine similarity is one of those methods.
-In order to understand how cosine similarity works, let us first discuss the
-modeling of a text document and cosine similarity in general and then proceed
-by its applications in text document similarity tasks.
+There are plenty of approaches for comparing whether two texts are semantically
+similar to each other. Cosine similarity is one of those methods. In order to
+understand how cosine similarity works, let us first discuss the modeling of a
+text document.
 
-\subsection{Document Modeling}
+\subsection{Text Document Modeling}
 
 There are several ways in which a text document can be modeled. This includes a
 bag of words modeling, where the frequency of a term in a text document
 represents its weight and therefore, more frequent words are deemed more
-``important.'' The whole idea behind a text document modeling is to quantify
-the textual data into the numeric data (usually, vectors). Once the numeric
-data is obtained, we can then apply various text semantic similarity techniques
-in order to compare whether two documents are similar to each other.
+``important.'' Another example is \textit{tf-idf} vectorization. The whole idea
+behind text document modeling is to transform the textual data into the numeric
+data (usually, vectors). Once the numeric data is obtained, we can then apply
+various text semantic similarity techniques in order to compare whether two
+documents are similar to each other.
 
 \subsection{Cosine Similarity}
 
 Cosine similarity is a measure of similarity between two non-zero vectors of an
 inner product space that measures the cosine of the angle between
 them~\cite{wikicosine}. If we have two vectors \(\vec{a}\) and \(\vec{b}\),
-then the cosine of these two vectors is \(\vec{a} \cdot \vec{b}\) which is
-equal to \(\left\|\vec{a}\right\|\left\|\vec{b}\right\|\cos\theta\) where
-\(\theta\) is the angle between these vectors (Euclidean dot product formula).
-It can also be represented as the product of two vectors. Therefore if
-\(\vec{a} = \begin{bmatrix}a_1 \\ a_2 \\ a_3\end{bmatrix}\) and
-\(\vec{b} = \begin{bmatrix}b_1 \\ b_2 \\ b_3\end{bmatrix}\), then
-\(\vec{a} \cdot \vec{b}\) is also equal to \(a_1b_1 + a_2b_2 + a_3b_3\).
+then the cosine of these two vectors is
+\(\vec{a} \cdot \vec{b} = \abs{\vec{a}}\abs{\vec{b}}\cos\theta\),
+where \(\theta\) is the angle between these vectors. This is also known as the
+Euclidean dot product formula.
+The cosine of these two vectors can also be computed using their coordinates.
+Therefore if
+\(\vec{a} = \begin{bmatrix}a_1 \\ a_2\end{bmatrix}\) and
+\(\vec{b} = \begin{bmatrix}b_1 \\ b_2\end{bmatrix}\), then
+\(\vec{a} \cdot \vec{b} = a_1b_1 + a_2b_2\). Hence, for two vectors \(\vec{a}\)
+and \(\vec{b}\) with coordinated \(a_1, a_2\) and \(b_1, b_2\) respectively,
+the following holds:
+
+\[\vec{a} \cdot \vec{b} = \abs{\vec{a}}\abs{\vec{b}}\cos\theta = a_1b_1 + a_2b_2\]
+
+\bigskip
+
+If the vector coordinates are known, then one can compute the magnitude of the
+vector. For vector \(\vec{x} = \begin{bmatrix}x_1 \\ x_2 \\ \dots \\ x_n\end{bmatrix}\),
+the magnitude is \(\sqrt{x_1^2 + x_2^2 + \cdots + x_n^2}\). Hence, if we have two
+vectors \(\vec{a} = \begin{bmatrix}a_1 \\ a_2 \\ \dots \\ a_n\end{bmatrix}\) and
+\(\vec{b} = \begin{bmatrix}b_1 \\ b_2 \\ \dots \\ b_n\end{bmatrix}\), then the cosine
+of an angle between them can be computed using the formula:
+
+\[ \cos\theta = \dfrac{a_1b_1 + a_2b_2 + \cdots + a_nb_n}{\sqrt{a_1^2 + a_2^2 + \cdots + a_n^2}\sqrt{b_1^2 + b_2^2 + \cdots + b_n^2}} \]
+
+In other words, if we have two vectors with all their coordinates, it is
+possible to compute the cosine similarity between them.
 
 \bigskip
 
@@ -180,12 +200,12 @@ page~\cite{wikicosineproof}.
 
 As an example, consider two vectors
 \(\vec{a} = \begin{bmatrix}3 \\ 4\end{bmatrix}\)
-and \(\vec{b} = \begin{bmatrix}5 \\ 12\end{bmatrix}\). Then the size of \(a\) is
-\(\sqrt{1^2 + 2^4} = 5\) and the size of \(b\) is \(\sqrt{3^2 + 4^2} = 13\).
+and \(\vec{b} = \begin{bmatrix}5 \\ 12\end{bmatrix}\). Then the magnitude of \(a\) is
+\(\sqrt{1^2 + 2^4} = 5\) and the magnitude of \(b\) is \(\sqrt{3^2 + 4^2} = 13\).
 Then \(\vec{a} \cdot \vec{b} = 15 + 48 = 63\) and
 \(\abs{\vec{a}} \times \abs{\vec{b}} = 5 * 13 = 65\). Therefore, the cosine of
-an angle between these vectors is \(\dfrac{63}{65}\) which is the similarity
-measure between these two vectors.
+an angle between these vectors is \(\dfrac{63}{65} \approx 0.969\) which is the
+similarity measure between these two vectors.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Applications
@@ -211,9 +231,16 @@ interval \([0,1]\).
 
 \bigskip
 
+It is important to note that the metric is a measurement of orientation and not
+the magnitude. It is really a comparison of documents on a normalized space
+since it does not only consider the magnitude of word counts of each document,
+but also the angle between the documents.
+
+\bigskip
+
 Below find a Python implementation of cosine similarity.
 
-\begin{figure}[h]
+\begin{figure}[H]
   \begin{minted}[fontsize=\small,frame=single]{python}
   import numpy as np
 
@@ -221,9 +248,9 @@ Below find a Python implementation of cosine similarity.
       """Returns the cosine similarity value of two vectors."""
 
       dot_product: float = np.dot(a, b)
-      size_a: float = np.linalg.norm(a)
-      size_b: float = np.linalg.norm(b)
-      similarity: float = dot_product / (size_a * size_b)
+      magnitude_a: float = np.linalg.norm(a)
+      magnitude_b: float = np.linalg.norm(b)
+      similarity: float = dot_product / (magnitude_a * magnitude_b)
 
       return similarity
 
