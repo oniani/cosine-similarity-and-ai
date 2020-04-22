@@ -136,26 +136,31 @@
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Example Section
+% Introduction
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
 
-There are plenty of approaches for comparing whether two texts are semantically
-similar to each other. Cosine similarity is one of those methods. In order to
-understand how cosine similarity works, let us first discuss the modeling of a
-text document.
+There are many approaches for determining whether two texts are semantically
+similar to each other. Cosine similarity is one of those methods. Initially
+arisen from the law of cosines~\cite{wikicosineproof}, the technique is now
+widely used in natural language processing (and other) problems.
+
+\bigskip
+
+In order to understand how cosine similarity works, let us first discuss how
+a text document can be modeled.
 
 \subsection{Text Document Modeling}
 
 There are several ways in which a text document can be modeled. This includes a
-bag of words modeling, where the frequency of a term in a text document
-represents its weight and therefore, more frequent words are deemed more
-``important.'' Another example is \textit{tf-idf} vectorization. The whole idea
-behind text document modeling is to transform the textual data into the numeric
-data (usually, vectors). Once the numeric data is obtained, we can then apply
-various text semantic similarity techniques in order to compare whether two
-documents are similar to each other.
+\textit{bag of words} modeling, where the frequency of a term in a text
+document represents its weight and therefore, more frequent words are deemed
+more ``important.'' Another example is \textit{tf-idf} vectorization. The
+primary goal of text document modeling is to transform the textual data into
+the numeric data (usually, term vectors). Once the numeric data is obtained, we
+can then apply various text semantic similarity techniques in order to compare
+if two documents are similar to each other.
 
 \subsection{Cosine Similarity}
 
@@ -164,22 +169,22 @@ inner product space that measures the cosine of the angle between
 them~\cite{wikicosine}. If we have two vectors \(\vec{a}\) and \(\vec{b}\),
 then the cosine of these two vectors is
 \(\vec{a} \cdot \vec{b} = \abs{\vec{a}}\abs{\vec{b}}\cos\theta\),
-where \(\theta\) is the angle between these vectors. This is also known as the
+where \(\theta\) is the angle between the vectors. This is also known as the
 Euclidean dot product formula.
-The cosine of these two vectors can also be computed using their coordinates.
-Therefore if
-\(\vec{a} = \begin{bmatrix}a_1 \\ a_2\end{bmatrix}\) and
+The cosine of two vectors can also be computed using their coordinates:
+if \(\vec{a} = \begin{bmatrix}a_1 \\ a_2\end{bmatrix}\) and
 \(\vec{b} = \begin{bmatrix}b_1 \\ b_2\end{bmatrix}\), then
 \(\vec{a} \cdot \vec{b} = a_1b_1 + a_2b_2\). Hence, for two vectors \(\vec{a}\)
-and \(\vec{b}\) with coordinated \(a_1, a_2\) and \(b_1, b_2\) respectively,
+and \(\vec{b}\) with coordinates \(a_1, a_2\) and \(b_1, b_2\) respectively,
 the following holds:
 
 \[\vec{a} \cdot \vec{b} = \abs{\vec{a}}\abs{\vec{b}}\cos\theta = a_1b_1 + a_2b_2\]
 
 \bigskip
 
-If the vector coordinates are known, then one can compute the magnitude of the
-vector. For vector \(\vec{x} = \begin{bmatrix}x_1 \\ x_2 \\ \dots \\ x_n\end{bmatrix}\),
+If the vector coordinates are known, then one can also compute the magnitude of
+the vector. For vector
+\(\vec{x} = \begin{bmatrix}x_1 \\ x_2 \\ \dots \\ x_n\end{bmatrix}\),
 the magnitude is \(\sqrt{x_1^2 + x_2^2 + \cdots + x_n^2}\). Hence, if we have two
 vectors \(\vec{a} = \begin{bmatrix}a_1 \\ a_2 \\ \dots \\ a_n\end{bmatrix}\) and
 \(\vec{b} = \begin{bmatrix}b_1 \\ b_2 \\ \dots \\ b_n\end{bmatrix}\), then the cosine
@@ -187,24 +192,18 @@ of an angle between them can be computed using the formula:
 
 \[ \cos\theta = \dfrac{a_1b_1 + a_2b_2 + \cdots + a_nb_n}{\sqrt{a_1^2 + a_2^2 + \cdots + a_n^2}\sqrt{b_1^2 + b_2^2 + \cdots + b_n^2}} \]
 
-In other words, if we have two vectors with all their coordinates, it is
-possible to compute the cosine similarity between them.
-
-\bigskip
-
-Some of you might be wondering where the cosine comes from. The answer lies in
-the law of cosines. A great walkthrough is available on the proof Wikipedia
-page~\cite{wikicosineproof}.
+In other words, if we have two vectors with all the coordinates, it is possible
+to compute the cosine similarity between them.
 
 \subsection{Example}
 
 As an example, consider two vectors
 \(\vec{a} = \begin{bmatrix}3 \\ 4\end{bmatrix}\)
 and \(\vec{b} = \begin{bmatrix}5 \\ 12\end{bmatrix}\). Then the magnitude of \(a\) is
-\(\sqrt{1^2 + 2^4} = 5\) and the magnitude of \(b\) is \(\sqrt{3^2 + 4^2} = 13\).
-Then \(\vec{a} \cdot \vec{b} = 15 + 48 = 63\) and
+\(\sqrt{3^2 + 4^2} = 5\) and the magnitude of \(b\) is \(\sqrt{5^2 + 12^2} = 13\).
+It follows that \(\vec{a} \cdot \vec{b} = 15 + 48 = 63\) and
 \(\abs{\vec{a}} \times \abs{\vec{b}} = 5 * 13 = 65\). Therefore, the cosine of
-an angle between these vectors is \(\dfrac{63}{65} \approx 0.969\) which is the
+an angle between the vectors is \(\dfrac{63}{65} \approx 0.969\) which is the
 similarity measure between these two vectors.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -213,18 +212,26 @@ similarity measure between these two vectors.
 
 \section{Applications}
 
-Cosine similarity is one of the most commonly used approaches in text document
-similarity.
+Cosine similarity is one of the most commonly used approaches in calculating
+semantic similarity across the documents. Therefore, it is naturally employed
+in natural language processing tasks. Many NLP applications need to compute the
+similarity in meaning between two short texts. Search engines, for instance,
+need to model the relevance of a document to a query, beyond the overlap in
+words between the two. Similarly, Q\&A websites such as Quora need to determine
+whether a question has already been asked before. This type of text similarity
+is often computed by first embedding the two short texts and then calculating
+the cosine similarity between them.
 
 \bigskip
 
 Suppose that we have two documents \(D_1\) and \(D_2\) modeled as term vectors
 \(\vec{t_1}\) and \(\vec{t_2}\) respectively. Then the similarity of two
 documents corresponds to the correlation between the vectors and can be
-quantified as a cosine of the angle between the vectors. The formula would be
+quantified as a cosine of the angle between the vectors. The cosine similarity
+formula~\cite{huang2008} would be:
 
-\[SIM(D_1, D_2) = \dfrac{\vec{t_1} \cdot \vec{t_2}}{\abs{\vec{t_a}} \times
-  \abs{\vec{t_b}}}.\]
+\[SIM_C(\vec{t_1}, \vec{t_2}) = \dfrac{\vec{t_1} \cdot
+  \vec{t_2}}{\abs{\vec{t_1}} \times \abs{\vec{t_2}}}.\]
 
 As a result, the similarity value is non-negative, bounded by the closed
 interval \([0,1]\).
@@ -272,11 +279,11 @@ two vectors and prints out the cosine similarity.
 
 \section{Performance and Comparison to Other Approaches}
 
-Performance of cosine similarity can be altered by how the text document is
-vectorized~\cite{sitikhu2019} (e.g., tf-idf vectorization might yield better
+Performance of cosine similarity can be altered by the apparoch used for
+vectorization~\cite{sitikhu2019} (e.g., tf-idf vectorization might yield better
 results than Word2Vec vectorization). This means that the right vectorization
 strategy could drastically increase the performance, while the poor
-vectorization will, unsurprisingly, result in a poor performance.
+vectorization will, unsurprisingly, result in the poor performance.
 
 \medskip
 
@@ -284,9 +291,11 @@ There are many other approaches for finding semantic similarity between the
 texts. The recent advancements in the domains of artificial intelligence and
 natural language processing allowed for development of models such as
 BERT~\cite{turc2019}, BioBERT~\cite{btz682}, and Universal Sentence Encoder
-(USE)~\cite{use} can be used for high-accuracy text semantic similarity score
-computations. These approaches are thought to, on average, outperform the
-cosine similarity. That said, there are
+(USE)~\cite{use}, all of which can be used for high-accuracy text semantic
+similarity score computations. The advantage of the cosine similarity, however,
+is its simplicity and the fact that one could run it over massive datasets.
+Doing the same with models like BioBERT could possibly take a lot time and
+hence, be highly inefficient.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Current Work
@@ -295,10 +304,10 @@ cosine similarity. That said, there are
 \section{Current Work}
 
 Cosine similarity is very much used in the modern, state-of-the-art papers,
-such as ones cited in the paper. Its flexibility allows one to apply it in
-virtually any setting, as long as the documents can be represented as vectors
-(also known as term vectors). Therefore, cosine similarity is still a trendy
-tool.
+such as ones cited in this paper. Its flexibility allows one to apply it
+virtually under any setting, as long as documents can be represented as
+vectors. Besides, it is widely used for benchmarking purposes and is usually a
+standard against which the new approaches are usually.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Summary
@@ -306,12 +315,11 @@ tool.
 
 \section{Summary}
 
-We have introduced cosine similarity and briefly covered its history. We have
-discussed the importance of cosine similarity in the domains of artificial
-intelligence and natural language processing and its prevalence in the
-state-of-the-art work. Sample Python implementation of the algorithm was also
-provided alongside with small illustrious examples depicting the cosine
-similarity procedure.
+We have introduced cosine similarity and walked through examples to strenghten
+the understanding of the concept. We have discussed the importance of cosine
+similarity in the domains of artificial intelligence and natural language
+processing and its prevalence in the state-of-the-art work. Sample Python
+implementation of the algorithm was also provided.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliography and References
