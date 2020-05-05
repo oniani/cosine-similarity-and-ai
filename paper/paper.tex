@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Filename: template.tex
+% Filename: paper.tex
 % Author:   David Oniani
-% Modified: April 23, 2020
+% Modified: May 05, 2020
 %  _         _____   __  __
 % | |    __ |_   _|__\ \/ /
 % | |   / _` || |/ _ \\  /
@@ -48,17 +48,6 @@
 
 % Line spacing is 1.5
 \renewcommand{\baselinestretch}{1.5}
-
-% Rename "Contents" to "Table of Contents"
-\addto\captionsenglish{% Replace "english" with the language used
-  \renewcommand{\contentsname}
-    {\textbf{Table of Contents}}}
-
-% Filling the space for centering the title of the table of contents
-% Dots for ToC sections
-\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
-\renewcommand{\cfttoctitlefont}{\hspace*{\fill}\Large}
-\renewcommand{\cftaftertoctitle}{\hspace*{\fill}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Miscellaneous
@@ -130,14 +119,6 @@
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Table of Contents
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newpage
-\tableofcontents
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Introduction
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -155,14 +136,14 @@ text document can be modeled.
 
 \subsection{Text Document Modeling}
 
-There are a number of ways in which a text document can be modeled. This
-includes a \textit{bag-of-words} modeling, where the frequency of a term in a
-text document represents its weight and therefore, and \textit{tf-idf}
-vectorization. The primary goal of text document modeling is to transform the
-textual data into the numeric data (in this case, term vectors). Once the
-numeric data is obtained, we can then apply mathematical techniques including
-text semantic similarity approaches such as cosine similarity in order to
-compare if two documents are similar to each other.
+There several ways in which a text document can be modeled. This includes a
+\textit{bag-of-words} modeling, where the frequency of a term in a text
+document represents its weight and \textit{tf-idf} vectorization. The primary
+goal of text document modeling is to transform the textual data into the
+numeric data (in this case, term vectors). Once the numeric data is obtained,
+we can then apply mathematical techniques including text semantic similarity
+approaches such as cosine similarity in order to compare if two documents are
+similar to each other.
 
 \subsection{Cosine Similarity}
 
@@ -234,15 +215,15 @@ derive the cosine of the angle $\theta$ (e.g., by applying the law of cosines).
       \node at (5,4) {$x$};
 
       % Points
-      \node at (0.35,1) {$(3, 4)$};
-      \node at (1.2,2.8) {$(5, 12)$};
+      \node at (0.35,1) {$(5, 12)$};
+      \node at (1.2,2.8) {$(3, 4)$};
 
       % Vectors
-      \draw [thick,->] (0,4) -- (0.75,1);
-      \node at (0.25,2) {$\vec{a}$};
-
       \draw [thick,->] (0,4) -- (1.25,3);
-      \node at (1,3.5) {$\vec{b}$};
+      \node at (1,3.5) {$\vec{a}$};
+
+      \draw [thick,->] (0,4) -- (0.75,1);
+      \node at (0.25,2) {$\vec{b}$};
 
       % Angle
       \filldraw[fill=blue!15] (0,4) -- (2.5mm,3.8) arc (0:-57:3mm) -- cycle;
@@ -320,7 +301,7 @@ The program is fairly simplistic (yet performant) and as shown above,
 \mintinline{python}{cosine_similarity} function takes two vectors and prints
 out the cosine similarity between them. Vectors \mintinline{python}{a} and
 \mintinline{python}{b} can be thought of as vectorized text (i.e., the
-vectorization algorithm has already been aplied to two texts).
+vectorization algorithm has already been applied to two texts).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Comparison to Other Approaches
